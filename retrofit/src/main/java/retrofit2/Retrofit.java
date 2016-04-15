@@ -355,9 +355,9 @@ public final class Retrofit {
     checkNotNull(type, "type == null");
     checkNotNull(annotations, "annotations == null");
 
-    for (Converter.Factory converterFactory : converterFactories) {
+    for (int i = 0, count = converterFactories.size(); i < count; i++) {
       Converter<?, String> converter =
-              converterFactory.stringConverter(type, annotations, this);
+          converterFactories.get(i).stringConverter(type, annotations, this);
       if (converter != null) {
         //noinspection unchecked
         return (Converter<T, String>) converter;
